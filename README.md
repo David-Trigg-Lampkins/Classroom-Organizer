@@ -3,18 +3,19 @@
 You are a teacher, and you have to organize your class of students, you can add or delete students off of your files, and you can specifically add the names, major, grade, etc.
 ###  Classes:
   •	Link List Class
-  •	Data Class
+  
+  •	Data Class - Students
+  
   •	List Node
+  
 ###  Functions:
-•	Print 
+•	Print - print the student list
 
-•	Add
+•	Add - add new students
 
-•	Delete
+•	Delete - remove students
 
-•	View
-
-•	getInfo
+•	getInfo - get infrormation about students
 
 ###  Program Flow:
 
