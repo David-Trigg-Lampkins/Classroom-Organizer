@@ -1,3 +1,8 @@
+//"student.h"
+//Cameron Bailey & Trigg Lampkins
+//create the student class
+//11/01/2024
+
 #ifndef STUDENT_H
 #define STUDENT_H
 #include <iostream>
@@ -28,6 +33,39 @@ class Students
             this->grade = grade;
         }
         //overloaded operators
+        bool operator==(const Students& compare)
+        {
+            return this->age == compare.age;
+        }
+        bool operator>(const Students& compare)
+        {
+            return this->age > compare.age;
+        }
+        bool operator<(const Students& compare)
+        {
+            return this->age < compare.age;
+        }
+        
+        bool operator==(const Students& compare)
+        {
+            return this->age == compare.grade;
+        }
+        bool operator>(const Students& compare)
+        {
+            return this->age > compare.grade;
+        }
+        bool operator<(const Students& compare)
+        {
+            return this->age < compare.grade;
+        }
+
+        friend ostream& operator<< (ostream& os, const Students person)
+        {
+            os << person.name;
+            os << person.age;
+            os << person.grade;
+            return os;
+        }
 };
 
 #endif
