@@ -6,6 +6,7 @@
 #ifndef STUDENT_H
 #define STUDENT_H
 #include <iostream>
+#include <string>
 using namespace std;
 
 class Students
@@ -17,8 +18,8 @@ class Students
     public:
         //setters
         void setname(string newName){name = newName;}
-        void setage(int newAge){age = newAge;}
-        void setgrade(int newGrade){grade = newGrade;}
+        void setage(int newAge){this->age = newAge;}
+        void setgrade(int newGrade){this->grade = newGrade;}
 
         //getters
         string getName(){return name;}
@@ -26,6 +27,7 @@ class Students
         int getGrade(){return grade;}
 
         //constructor
+        Students();
         Students(string name, int age, int grade)
         {
             this->name = name;

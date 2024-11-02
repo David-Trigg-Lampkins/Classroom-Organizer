@@ -9,44 +9,63 @@
 using namespace std;
 
 template <class T>
-struct Node {
-    int data;
-    Node* prev;
-    Node* next;
-};
-
-template <class T>
-class List {
-
-    Node* head;
-};
-
-template <class T>
-List<T>::~List() {
-    while (head) {
-        Node<T>* temp = head;
-        head = head->next;
-        delete temp;
+List<T>::~List() //what deletes the linked list
+{
+    Node* current = head;
+    while (current != nullptr)
+    {
+        Node* temp = current;
+        current = current->next;
+        delete temp; // Frees the memory
     }
+}   //i tried running it and there are more errors than i can count
+
+template <class T>
+void insert(Students stu) 
+{
+    Node *newNode;				// A new node
+	Node *nodePtr;				// To traverse the list
+	Node *previousNode = NULL; // The previous node
+
+	newNode = new ListNode(stu);
+
+	// If there are no nodes in the list make newNode the first node
+	if (!head)
+	{
+		head = newNode;
+		newNode->next = NULL;
+	}
+	else  // Otherwise, insert newNode
+	{
+		// Position nodePtr at the head of list.
+		nodePtr = head;
+
+		// Initialize previousNode to NULL.
+		previousNode = NULL;
+
+		// Skip all nodes whose value is less than newValue.
+		while (nodePtr != NULL && nodePtr->value < newValue)
+		{  
+			previousNode = nodePtr;
+			nodePtr = nodePtr->next;
+		}
+
+		// If the new node is to be the 1st in the list, insert it before all other nodes.
+		if (previousNode == NULL)
+		{
+			head = newNode;
+			newNode->next = nodePtr;
+		}
+		else  // Otherwise insert after the previous node.
+		{
+			previousNode->next = newNode;
+			newNode->next = nodePtr;
+		}
+	}
 }
 
 template <class T>
-void List<T>::insert(const T& data) {
-    Node<T>* newNode = new Node<T>(data);
-    if (!head) {
-        head = newNode;
-    } else {
-        Node<T>* current = head;
-        while (current->next) {
-            current = current->next;
-        }
-        current->next = newNode;
-    }
-    size++;
-}
-
-template <class T>
-int List<T>::pop(const T& data) {
+int pop(const T& data) {
     Node* temp = head;
     int data = temp->next;
     head = head->next;
@@ -55,9 +74,10 @@ int List<T>::pop(const T& data) {
 }
 
 template <class T>
-void List<T>::remove(const T& data) {
-    Node<T>* current = head;
-    Node<T>* previous = nullptr;
+void remove(name) 
+{
+    Node* current = head;
+    Node* previous = nullptr;
 
     while (current) {
         if (current->data.getName() == name) {
@@ -67,7 +87,6 @@ void List<T>::remove(const T& data) {
                 head = current->next;
             }
             delete current;
-            size--;
             return;
         }
         previous = current;
@@ -76,20 +95,20 @@ void List<T>::remove(const T& data) {
 }
 
 template <class T>
-void List<T>::print() const {
-    Node<T>* current = head;
+void print() {
+    Node* current = head;
     if (!current) {
-        std::cout << "No students in the list.\n";
+        cout << "No students in the list.\n";
         return;
     }
     while (current) {
-        std::cout << current->data << std::endl;
+        cout << current->data << endl;
         current = current->next;
     }
 }
 
 template <class T>
-bool List<T>::isEmpty() {
+bool isEmpty() {
     if(!head)
 		return true;
 	else
@@ -97,24 +116,51 @@ bool List<T>::isEmpty() {
 }
 
 template <class T>
-int List<T>::getLength() {
+void makeEmpty() 
+{
+
+	Node *nodePtr;   // To traverse the list
+	Node *nextNode;  // To point to the next node
+
+	// Position nodePtr at the head of the list.
+	nodePtr = head;
+
+	// While nodePtr is not at the end of the list...
+	while (nodePtr != NULL)
+	{
+		// Save a pointer to the next node.
+		nextNode = nodePtr->next;
+		
+		cout << "\nDeleting the node with value " << nodePtr->student;
+		
+		// Delete the current node.
+		delete nodePtr;
+
+		// Position nodePtr at the next node.
+		nodePtr = nextNode;
+	}
+	cout << endl << endl;
+}
+
+template <class T>
+int getLength() 
+{
     int counter = 0;
-	ListNode *nodePtr;
+	Node *nodePtr;
 	
 	nodePtr = head;
 	
-	while(nodePtr != tail)
+	while(nodePtr)
 	{
 		counter++;
 		nodePtr = nodePtr->next;
-		if (nodePtr == tail)
-			counter++;
 	}
 	return counter;
 }
 
+
 template <class T>
-void List<T>::sort() const {
+void sort() {
     
     node* MergeSort(node *my_node)
 {
@@ -131,16 +177,17 @@ void List<T>::sort() const {
     }
 }
 
+
 node* Merge(node* firstNode, node* secondNode)
 {
     if (firstNode == NULL) return secondNode;
-    else if (secondNode == NULL) return firstNode;
-    else if (firstNode->number <= secondNode->number) //if I reverse the sign to >=, the behavior reverses
+    else if(secondNode == NULL) return firstNode;
+    else if(firstNode->number <= secondNode->number) //if I reverse the sign to >=, the behavior reverses
     {
         firstNode->next = Merge(firstNode->next, secondNode);
         return firstNode;
     }
-    else 
+    else
     {
         secondNode->next = Merge(firstNode, secondNode->next);
         return secondNode;
@@ -160,4 +207,5 @@ node* Split(node* my_node)
         return secondNode;
     }
 }
-}
+} //i figured out that they do need the template on them, i was checking my labs to refresh on how i did them
+//ok
