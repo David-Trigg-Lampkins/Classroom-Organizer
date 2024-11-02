@@ -38,26 +38,17 @@ class Students
         bool operator==(const Students& compare)
         {
             return this->age == compare.age;
-        }
-        bool operator>(const Students& compare)
-        {
-            return this->age > compare.age;
-        }
-        bool operator<(const Students& compare)
-        {
-            return this->age < compare.age;
-        }
-        
-        bool operator==(const Students& compare)
-        {
             return this->age == compare.grade;
         }
         bool operator>(const Students& compare)
         {
+            return this->age > compare.age;
             return this->age > compare.grade;
+            ;
         }
         bool operator<(const Students& compare)
         {
+            return this->age < compare.age;
             return this->age < compare.grade;
         }
 

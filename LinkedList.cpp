@@ -11,10 +11,10 @@ using namespace std;
 template <class T>
 List<T>::~List() //what deletes the linked list
 {
-    Node* current = head;
+    Node<Students>* current = head;
     while (current != nullptr)
     {
-        Node* temp = current;
+        Node<Students>* temp = current;
         current = current->next;
         delete temp; // Frees the memory
     }
@@ -23,11 +23,11 @@ List<T>::~List() //what deletes the linked list
 template <class T>
 void insert(Students stu) 
 {
-    Node *newNode;				// A new node
-	Node *nodePtr;				// To traverse the list
-	Node *previousNode = NULL; // The previous node
+    Node<Students> *newNode;				// A new node
+	Node<Students> *nodePtr;				// To traverse the list
+	Node<Students> *previousNode = NULL; // The previous node
 
-	newNode = new ListNode(stu);
+	Node<Students> = new ListNode(stu);
 
 	// If there are no nodes in the list make newNode the first node
 	if (!head)
@@ -44,7 +44,7 @@ void insert(Students stu)
 		previousNode = NULL;
 
 		// Skip all nodes whose value is less than newValue.
-		while (nodePtr != NULL && nodePtr->value < newValue)
+		while (nodePtr != NULL && nodePtr->value < stu)
 		{  
 			previousNode = nodePtr;
 			nodePtr = nodePtr->next;
@@ -66,18 +66,18 @@ void insert(Students stu)
 
 template <class T>
 int pop(const T& data) {
-    Node* temp = head;
+    Node<Students>* temp = head;
     int data = temp->next;
-    head = head->next;
-    delete temp;
+    head = head->next; //takes head to the next
+    delete temp; //deletes the temp that is on the head
     return data;
 }
 
 template <class T>
 void remove(name) 
 {
-    Node* current = head;
-    Node* previous = nullptr;
+    Node<Students>* current = head;
+    Node<Students>* previous = nullptr;
 
     while (current) {
         if (current->data.getName() == name) {
@@ -86,41 +86,41 @@ void remove(name)
             } else {
                 head = current->next;
             }
-            delete current;
+            delete current; //deletes the current head selected
             return;
         }
         previous = current;
-        current = current->next;
+        current = current->next; //returns to the current head before
     }
 }
 
 template <class T>
 void print() {
-    Node* current = head;
-    if (!current) {
+    Node<Students>* current = head;
+    if (!current) { //if there are no students in the list, it comes back false
         cout << "No students in the list.\n";
         return;
     }
     while (current) {
         cout << current->data << endl;
-        current = current->next;
+        current = current->next; // while loop to list everyone on the list
     }
 }
 
 template <class T>
 bool isEmpty() {
-    if(!head)
+    if(!head) //if there is nothing in the head node, it come back true
 		return true;
 	else
-		return false;
+		return false; //if there is something there, it comes back false
 }
 
 template <class T>
 void makeEmpty() 
 {
 
-	Node *nodePtr;   // To traverse the list
-	Node *nextNode;  // To point to the next node
+	Node<Students> *nodePtr;   // To traverse the list
+	Node<Students> *nextNode;  // To point to the next node
 
 	// Position nodePtr at the head of the list.
 	nodePtr = head;
@@ -145,14 +145,14 @@ void makeEmpty()
 template <class T>
 int getLength() 
 {
-    int counter = 0;
-	Node *nodePtr;
+    int counter = 0; //sets counter to 0 to start the counting
+	Node<Students> *nodePtr;
 	
 	nodePtr = head;
 	
 	while(nodePtr)
 	{
-		counter++;
+		counter++; //while loop to count until they hit the end
 		nodePtr = nodePtr->next;
 	}
 	return counter;
@@ -160,52 +160,52 @@ int getLength()
 
 
 template <class T>
-void sort() {
-    
-    node* MergeSort(node *my_node)
-{
-    node *secondNode;
+void sort() 
+{    
+    Node<Students>* MergeSort(Node *my_node);
 
-    if (my_node == NULL)
+        Node *secondNode;
+
+    if (my_node == NULL) //node goes null
         return NULL;
     else if (my_node->next == NULL)
         return my_node;
     else
     {
-        secondNode = Split(my_node);
+        secondNode = Split(my_node); //splits node
         return Merge(MergeSort(my_node),MergeSort(secondNode));
     }
 }
 
 
-node* Merge(node* firstNode, node* secondNode)
+Node Merge(Node<Students>* firstNode, Node<Students>* secondNode)
 {
     if (firstNode == NULL) return secondNode;
     else if(secondNode == NULL) return firstNode;
     else if(firstNode->number <= secondNode->number) //if I reverse the sign to >=, the behavior reverses
     {
         firstNode->next = Merge(firstNode->next, secondNode);
-        return firstNode;
+        return firstNode; //makes the first node for first section
     }
     else
     {
         secondNode->next = Merge(firstNode, secondNode->next);
-        return secondNode;
+        return secondNode; //makes the firsnode for first section
     }
 }
 
-node* Split(node* my_node)
+Node Split(Node<Students>* my_node) // splits the nodes to sort out
 {
-    node* secondNode;
+    Node* firstNode;
+    Node* secondNode;
 
     if (my_node == NULL) return NULL;
     else if (my_node->next == NULL) return NULL;
-    else {
+    else 
+    {
         secondNode = my_node->next;
         my_node->next = secondNode->next;
         secondNode->next = Split(secondNode->next);
         return secondNode;
     }
-}
-} //i figured out that they do need the template on them, i was checking my labs to refresh on how i did them
-//ok
+};

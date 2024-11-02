@@ -14,9 +14,9 @@ class Node
 {
     public:
     Students student;
-    Node *next;
+    Node<Students> *next;
 
-    Node()
+    Node() //node to get student info
     {
         student.getName = "";
         student.getAge = 0;
@@ -29,8 +29,8 @@ template <class T>
 class List
 {
     private:
-        Node* head; 
-        Node* tail;
+        Node<Students>* head; 
+        Node<Students>* tail;
     
     public:
     
@@ -40,14 +40,15 @@ class List
             tail = NULL;
         } 
         ~List(); // Destructor to clean up memory
-        int pop(const T& data);
-        void insert(int position, Students stu); 
-        bool isEmpty();
-        int getLength();
-        void remove(string name);
-        void print() const; 
-        void sort() const;
-        void makeEmpty();
+        int pop(const T& data); 
+        void insert(int position, Students stu); //adds items
+        bool isEmpty(); //checks if empty
+        int getLength(); //tells the length of the list
+        void remove(string name);//removes from list
+        void print() const; //prints list
+        void sort() const; //sorts the list
+        void makeEmpty(); //deletes the list until empty
+        friend void head(const List& head);
 }; 
 
 #endif

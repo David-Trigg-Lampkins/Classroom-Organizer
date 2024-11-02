@@ -43,7 +43,7 @@ int main()
                 cout << "What is the student's grade: ";
                 cin >> grade;
                 currStudent.setname(name);
-                myList.insert(currNode, currStudent); 
+                myList.insert(currNode, currStudent); //inserts into the linked list
                 break;                  
             case 2://expel student  
                 cout << "Enter name of student to remove: ";
